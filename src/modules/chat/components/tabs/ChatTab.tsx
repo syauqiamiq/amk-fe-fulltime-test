@@ -7,14 +7,17 @@ import {
 import { Badge, Button, Dropdown, Input, Space, Tooltip } from "antd";
 import React, { useState } from "react";
 import ChatCard from "../ChatCard";
-import { dummyChatSession } from "@/constants/dummyChatData";
+
 import { IChatSession } from "@/interfaces/chat";
+import { dummyChatSession } from "@/constants/dummyChatSessionData";
+import { useNavigate } from "react-router-dom";
 
 interface IChatTabProps {}
 
 const ChatTab = (props: IChatTabProps) => {
   const [sortDescending, setSorDecending] = useState(true);
   const [chatStatus, setChatStatus] = useState("Open");
+  const navigate = useNavigate();
 
   const handleSortChange = () => {
     setSorDecending(!sortDescending);
@@ -93,7 +96,9 @@ const ChatTab = (props: IChatTabProps) => {
       </div>
       <div className="flex flex-col gap-3 mt-3 w-full">
         {dummyChatSession.map((v: IChatSession, i) => {
-          return <ChatCard key={i} data={v} />;
+          return (
+            <ChatCard onClick={() => navigate("/chat/1")} key={i} data={v} />
+          );
         })}
       </div>
     </div>

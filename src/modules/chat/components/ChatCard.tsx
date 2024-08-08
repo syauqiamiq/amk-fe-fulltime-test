@@ -4,11 +4,13 @@ import { Card, Tag } from "antd";
 
 interface IChatCard {
   data: IChatSession;
+  onClick: () => void;
 }
 
-const ChatCard = ({ data }: IChatCard) => {
+const ChatCard = ({ data, onClick }: IChatCard) => {
   return (
     <Card
+      onClick={onClick}
       title={
         <div className="flex flex-col">
           <h1 className="font-poppins font-medium uppercase text-base">
@@ -16,7 +18,7 @@ const ChatCard = ({ data }: IChatCard) => {
           </h1>
           <h2 className="font-poppins font-normal uppercase text-xs text-[#979797D9]">
             {dateFormatter(data.lastChatDate, "HH:ii")} |{" "}
-            {dateFormatter(data.lastChatDate, "dd-MM-YYY")}
+            {dateFormatter(data.lastChatDate, "dd-MM-yyy")}
           </h2>
         </div>
       }
